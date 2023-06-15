@@ -1,41 +1,68 @@
-# ChatGPT Prompt Generation
+# Git Commit Message Helper
 
-This repository provides scripts for generating prompts for ChatGPT, a language model developed by OpenAI.
+Git Commit Message Helper is a Command Line Interface (CLI) tool that helps in generating meaningful commit messages for your Git repository. It uses OpenAI's GPT model to generate a commit message, a GitHub Pull Request (PR) title, and a brief summary for the PR based on the diff of commits.
 
-## Prerequisites
+## Table of Contents
 
-- Git
-- Bash
+- [Installation](#installation)
+- [Usage](#usage)
+- [Commands](#commands)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Scripts
+## Installation
 
-### generate_chatgpt_prompt.sh
+Before using the tool, you need to ensure that `git` is installed on your machine. You can verify this by running:
 
-This script generates a prompt for ChatGPT to create a commit message, GitHub PR title, and description based on the last commit's list of changed files and the diff itself. The prompt includes information about added, modified, and deleted files. It can be used interactively with ChatGPT to get suggestions for the commit message and PR details.
-
-Usage:
 ```shell
-./generate_chatgpt_prompt.sh
+command -v git
 ```
 
-## How to Use
+This tool requires `jq` for processing JSON responses. To install `jq`, you can follow the instructions [here](https://stedolan.github.io/jq/download/).
 
-1. Clone the repository:
+You also need to set the `OPENAI_API_KEY` environment variable to your OpenAI API key.
+
+## Usage
+
+To use the tool, simply execute the `git_msg_helper.sh` script followed by the command you want to use.
+
+Example:
 ```shell
-git clone https://github.com/yarlson/chatgpt-prompts.git
+./git_msg_helper.sh get-message
 ```
 
-2. Navigate to the cloned repository:
+## Commands
+
+### generate-prompt
+
+This command generates a prompt text based on the PR diff.
+
+Example:
 ```shell
-cd chatgpt-prompts
+./git_msg_helper.sh generate-prompt
 ```
 
-3. Run the desired script in your folder with a git repo in it:
+### get-message
+This command generates a meaningful commit message, PR title, and PR summary by sending the generated prompt to OpenAI's GPT model. It internally uses the `generate-prompt` command to get the required prompt text.
+
+Example:
 ```shell
-./generate_chatgpt_prompt.sh
+./git_msg_helper.sh get-message
 ```
 
-4. Copy the generated prompt and use it as input for ChatGPT to receive suggestions.
+### help
+Displays help information.
 
+Example:
+```shell
+./git_msg_helper.sh help
+```
 
+## Contributing
+
+Contributions to the Git Commit Message Helper are always welcome. Whether it's a bug report, new feature, correction, or additional documentation, we greatly value your feedback and support. If you want to contribute to the codebase, please submit a pull request on GitHub.
+
+## License
+
+Git Commit Message Helper is licensed under the MIT License. For more information, please see the [LICENSE](LICENSE) file.
 
